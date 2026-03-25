@@ -8,7 +8,7 @@ of running each command one by one, this command ensures that each file that has
 created can run successfully.
 
 The two services that were used were Node.js and Postgres. Node.js served as the web app
-in which it allows the developer to run Java code on a server or local machine. Postgres 
+in which it allows the developer to run JavaScript on a server or local machine. Postgres 
 is a database that securely stores, manages, and retrieves data for applications.
 
 There were many mistakes along the way that I encountered: debugging my docker-compose file 

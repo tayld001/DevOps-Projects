@@ -55,3 +55,20 @@ so the app doesn't hit the database on every request.
 I learned that named volumes must be declared at the top-level volumes block in
 docker-compose.yml, not just under the service that uses them. If not, then 
 Docker won't create the volume.
+
+Day3
+- Reconfigured my Dockerfile into a multi-stage build Dockerfile.
+- Used .dockerignore to keep images clean.
+- Ran containers as non-root users.
+
+What I learned Day 3:
+Today I learned that without a dockerignore file, Docker copies node_mudules into
+the build context before npm install runs, transfer unnecessary hundreds of MB.
+A multi stage build uses multiple FROM statements in one Dockerfile. The first stage
+installs everything needed to build the app. The second stage starts fresh and copies
+only the built app and production dependencies. Running root inside a container is a major
+security risk which is why it should be ran as a non-root user. If a hacker exploits a vulnerability
+in the app and the container is running as root, they'd have root-level access inside the container.
+And lastly, npm install installs all dependencies including devDependencies like testing frameworks
+and build tools. npm install --only=production skips devDependencies and oly installs what the app needs to run.
+This keeps the final image smaller and cleaner.
